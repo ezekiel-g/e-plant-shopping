@@ -10,12 +10,6 @@ function ProductList({ onHomeClick }) {
     const [addedToCart, setAddedToCart] = useState({})
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart.items)
-
-    const cartItemCount = (() => {
-        let count = 0
-        cart.forEach(item => count += item.quantity)
-        return count
-    })()
     
     const plantsArray = [
         {
@@ -290,6 +284,17 @@ function ProductList({ onHomeClick }) {
         }))
     }
 
+    const checkIfInCart = nameToCheck => {
+        const isInCart = !!cart.find(item => item.name === nameToCheck)
+        return isInCart
+    }
+
+    const countCartItems = () => {
+        let count = 0
+        cart.forEach(item => count += item.quantity)
+        return count
+    }
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -354,7 +359,7 @@ function ProductList({ onHomeClick }) {
                                         id="mainIconPathAttribute"
                                     ></path>
                                 </svg>
-                                <span className="cart_quantity_count">{cartItemCount}</span>
+                                <span className="cart_quantity_count">{countCartItems()}</span>
                             </h1>
                         </a>
                     </div>
@@ -391,12 +396,11 @@ function ProductList({ onHomeClick }) {
                                             {plant.cost}
                                         </div>
                                         <button
-                                            className="product-button"
-                                            onClick={() =>
-                                                handleAddToCart(plant)
-                                            }
+                                            onClick={() => handleAddToCart(plant)}
+                                            disabled={checkIfInCart(plant.name)}
+                                            className="product-button"                                          
                                         >
-                                            Add to Cart
+                                            {checkIfInCart(plant.name) ? 'Added to cart' : 'Add to cart'}
                                         </button>
                                     </div>
                                 ))}

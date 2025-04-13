@@ -19,10 +19,27 @@ export const CartSlice = createSlice({
             }
         },
         removeItem: (state, action) => {
-
+            const itemNameToRemove = action.payload
+            state.items = state.items.filter(item => item.name !== itemNameToRemove)
         },
         updateQuantity: (state, action) => {
+            const itemNametoUpdateQuantity = action.payload.name
+            const itemAlreadyThere = state.items.find(
+                item => item.name === itemNametoUpdateQuantity
+            )
+            const actionType = action.payload.actionType
 
+            if (actionType === 'increment') {
+                itemAlreadyThere.quantity++
+            } else if (actionType === 'decrement') {
+                if (itemAlreadyThere.quantity > 1) {
+                    itemAlreadyThere.quantity--
+                } else {
+                    state.items = state.items.filter(
+                        item => item.name !== itemNametoUpdateQuantity
+                    )
+                }
+            }
         }
     }
 })

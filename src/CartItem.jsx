@@ -100,7 +100,7 @@ const CartItem = ({ onContinueShopping }) => {
                 </button>
                 <br />
                 <button
-                    className="get-started-button1"
+                    className="checkout-button"
                     onClick={e => handleCheckout(e)}
                 >
                     Checkout

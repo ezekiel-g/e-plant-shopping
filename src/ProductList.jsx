@@ -235,8 +235,8 @@ function ProductList({ onHomeClick }) {
         }
     ]
     const styleObj = {
-        backgroundColor: '#4CAF50',
-        color: '#fff!important',
+        backgroundColor: '#758E67',
+        color: '#FFFFFF!important',
         padding: '15px',
         display: 'flex',
         justifyContent: 'space-between',
@@ -250,7 +250,7 @@ function ProductList({ onHomeClick }) {
         width: '1100px'
     }
     const styleA = {
-        color: 'white',
+        color: '#FFFFFF',
         fontSize: '30px',
         textDecoration: 'none'
     }
@@ -306,10 +306,10 @@ function ProductList({ onHomeClick }) {
                         />
                         <a href="/" onClick={e => handleHomeClick(e)}>
                             <div>
-                                <h3 style={{ color: 'white' }}>
+                                <h3 style={{ color: '#FFFFFF' }}>
                                     Paradise Nursery
                                 </h3>
-                                <i style={{ color: 'white' }}>
+                                <i style={{ color: '#FFFFFF' }}>
                                     Where Green Meets Serenity
                                 </i>
                             </div>

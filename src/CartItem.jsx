@@ -4,15 +4,15 @@ import { removeItem, updateQuantity } from './CartSlice'
 import './CartItem.css'
 
 const CartItem = ({ onContinueShopping }) => {
-    const cart = useSelector(state => state.cart.items)
     const dispatch = useDispatch()
+    const cart = useSelector(state => state.cart.items)
 
     // Calculate total amount for all products in the cart
     const calculateTotalAmount = () => {
         let total = 0
-        for (const item of cart) {
-            total += parseFloat(item.cost.replace('$', '')) * item.quantity
-        }
+        cart.forEach(item => {
+          total += parseFloat(item.cost.replace('$', '')) * item.quantity
+        })
         return total
     }
 
